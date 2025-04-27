@@ -42,6 +42,7 @@ You can easily switch between models by changing one line in `config.py`:
 model_name = 'EfficientNetB0'  # for pretrained EfficientNet
 # OR
 model_name = 'CustomCNN'  # for training custom CNN from scratch
+```
 
 ---
 
@@ -49,3 +50,4 @@ model_name = 'CustomCNN'  # for training custom CNN from scratch
 One of the significant challenges in this project is that the images were extracted from video frames. Similar frames from the same video may end up in both the training and test datasets, leading to data leakage. This can significantly inflate the model's performance and create an unrealistic estimation of its true capability when generalised to unseen data.
 To address this, I implemented a group-based split where each group corresponds to frames from a particular video. This ensures that no image from the same video appears in both the training and test sets, preventing any potential leakage from similar video frames.
 
+---
