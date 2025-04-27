@@ -4,7 +4,7 @@ from PIL import Image
 import os
 from config import Config
 
-def predict_batch(model, data_dir, idx_to_class):
+def predict_batch(model, data_dir):
     """
     Predict the class label for a batch of images in the specified directory.
 
@@ -20,6 +20,8 @@ def predict_batch(model, data_dir, idx_to_class):
     # Set the device to GPU if available, otherwise fall back to CPU
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model.eval()  # Set the model to evaluation mode
+    
+    idx_to_class = {idx: class_name for idx, class_name in enumerate(os.listdir(Config.data_dir))}
 
     # Preprocessing steps: Resize, Convert to Tensor, and Normalize the image
     preprocess = transforms.Compose([
@@ -59,3 +61,14 @@ def predict_batch(model, data_dir, idx_to_class):
 
     # Return the list of predictions
     return predictions
+
+def load_model():
+    """
+    Load the pretrained model with weights saved in checkpoints/best_model.pth.
+
+    Returns:
+    - model (torch.nn.Module): The model with loaded weights.
+    """
+    model = models.efficientnet_b0(pretrained=False)  # Initialize the model architecture
+    model.load_state_dict(torch.load('checkpoints/best_model.pth'))  # Load the saved weights
+    return model
