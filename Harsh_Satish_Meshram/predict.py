@@ -7,14 +7,13 @@ from config import Config
 def predict_batch(images=None):
     """
     Predict the class label for a batch of images in the specified directory.
-
+    
     Args:
-    - model (torch.nn.Module): The trained model.
-    - data_dir (str): The path to the directory containing subdirectories of images for each class.
-    - idx_to_class (dict): A mapping of index to class names.
+    - images (list): A list of image paths to predict, if provided. 
+      If no images are provided, it will use `Config.data_dir` for predictions.
 
     Returns:
-    - List of tuples: Each tuple contains (image_path, predicted_class)
+    - List of tuples: Each tuple contains (true_class, predicted_class)
     """
 
     # Set the device to GPU if available, otherwise fall back to CPU
@@ -89,6 +88,6 @@ def load_model():
     Returns:
     - model (torch.nn.Module): The model with loaded weights.
     """
-    model = models.efficientnet_b0(pretrained=False)  # Initialize the model architecture
+    model = EfficientNetModel(num_classes=Config.num_classes)  # Initialize the model architecture
     model.load_state_dict(torch.load('checkpoints/best_model.pth'))  # Load the saved weights
     return model
