@@ -5,7 +5,7 @@
 This project performs **multiclass classification** of **workout exercise images**.  
 Given an image of a person performing an exercise, the model predicts the correct exercise name.
 
-The project was done as part of an assignment for image classification using deep learning.
+The project was done as part of an assignment for the Course: Image and Video Processing using deep learning.
 
 ---
 
