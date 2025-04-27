@@ -8,6 +8,6 @@ class Config:
     patience = 5
     test_size = 0.2
     random_seed = 42
-    data_dir = 'Harsh_Satish_Meshram/data'
+    data_dir = 'data/'
     model_name = 'EfficientNetB0'  # 'EfficientNetB0' or 'CustomCNN'
     save_path = 'checkpoints/best_model.pth'
