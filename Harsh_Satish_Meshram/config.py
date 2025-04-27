@@ -1,10 +1,13 @@
-resize_x, resize_y = 128, 128
-input_channels = 3
-batchsize = 32
-epochs = 15
-learning_rate = 0.001
-num_classes = 22
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-train_dir = '/kaggle/working/workoutexercises-images/train'
-test_dir = '/kaggle/working/workoutexercises-images/test'
+# config.py
+class Config:
+    resize_x = 224
+    resize_y = 224
+    batchsize = 32
+    epochs = 50
+    learning_rate = 0.0001
+    patience = 5
+    test_size = 0.2
+    random_seed = 42
+    data_dir = '/kaggle/input/workout-images/'
+    model_name = 'EfficientNetB0'  # 'EfficientNetB0' or 'CustomCNN'
+    save_path = 'checkpoints/best_model.pth'
